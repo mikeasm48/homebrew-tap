@@ -67,11 +67,15 @@ class LiveTranslator < Formula
     launcher.chmod 0755
   end
 
+  # Приложение ставится в ~/Applications, а не в общий /Applications: туда
+  # macOS не пускает установщик без разрешения App Management, и установка
+  # молча ломалась. Пользовательская папка показывается в Launchpad и
+  # Spotlight наравне с общей. Копия — это лишь оболочка с иконкой и скриптом
+  # запуска, сам jar остаётся в Cellar, поэтому дублирования не происходит.
   def post_install
-    # Копия в «Программах» — это лишь оболочка с иконкой и скриптом, поэтому
-    # дублирования jar не происходит. Симлинк здесь хуже: Launchpad и Spotlight
-    # показывают такие приложения ненадёжно.
-    target = Pathname.new("/Applications/Live Translator.app")
+    apps = Pathname.new(Dir.home)/"Applications"
+    apps.mkpath
+    target = apps/"Live Translator.app"
     rm_rf target
     cp_r opt_prefix/"Live Translator.app", target
   rescue => e
@@ -80,8 +84,9 @@ class LiveTranslator < Formula
 
   def caveats
     <<~TEXT
-      Live Translator добавлен в «Программы» — запускается двойным щелчком.
-      Из терминала тоже работает: live-translator
+      Live Translator добавлен в ~/Applications — запускается двойным щелчком
+      из Finder, Launchpad и Spotlight. Из терминала тоже работает:
+        live-translator
 
       Настройки и словарь терминов: ~/.config/live-translator/
       Расшифровки встреч и записи звука: ~/Documents/LiveTranslator/
@@ -93,8 +98,8 @@ class LiveTranslator < Formula
         brew install blackhole-2ch
       Пошаговая настройка — в приложении: Cmd + , → «Звук из созвона».
 
-      При удалении копия в «Программах» не убирается автоматически:
-        rm -rf "/Applications/Live Translator.app"
+      При удалении копия приложения не убирается автоматически:
+        rm -rf ~/Applications/"Live Translator.app"
     TEXT
   end
 
