@@ -1,15 +1,15 @@
 class LiveTranslator < Formula
   desc "Live speech translation (Uzbek/Russian/English) via Yandex AI Studio"
   homepage "https://github.com/mikeasm48/live_translator"
-  url "https://github.com/mikeasm48/live_translator/releases/download/v0.2.6/live-translator-0.2.6.jar",
+  url "https://github.com/mikeasm48/live_translator/releases/download/v0.2.7/live-translator-0.2.7.jar",
       using: :nounzip
-  sha256 "b48b08955a72f8c123aef1fddd0a258014f8d89a331dd361c256ef18d59b5a3b"
-  version "0.2.6"
+  sha256 "21ca37faedb5248397d6319495acea046002bdac0d8d87d8b032bf88ea130395"
+  version "0.2.7"
 
   depends_on "openjdk@21"
 
   def install
-    libexec.install "live-translator-0.2.6.jar" => "live-translator.jar"
+    libexec.install "live-translator-0.2.7.jar" => "live-translator.jar"
 
     # Обёртка вызывает Java из зависимости формулы, поэтому системная версия
     # Java ни на что не влияет и ставить её отдельно не нужно.
