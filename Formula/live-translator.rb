@@ -5,6 +5,8 @@ class LiveTranslator < Formula
       using: :nounzip
   sha256 "3758856d859ce9daa243bf52072511628ebbc8371fd75d75343abba7d36308f5"
   version "0.4.0"
+  # Исправлена обёртка: аргументы командной строки не доходили до приложения.
+  revision 1
 
   depends_on "openjdk@21"
 
@@ -15,7 +17,7 @@ class LiveTranslator < Formula
     # Java ни на что не влияет и ставить её отдельно не нужно.
     (bin/"live-translator").write <<~SCRIPT
       #!/bin/bash
-      exec "#{Formula["openjdk@21"].opt_bin}/java" -jar "#{opt_libexec}/live-translator.jar" "\"
+      exec "#{Formula["openjdk@21"].opt_bin}/java" -jar "#{opt_libexec}/live-translator.jar" "$@"
     SCRIPT
 
     build_app
@@ -62,7 +64,7 @@ class LiveTranslator < Formula
         -Xdock:name="Live Translator" \\
         -Xdock:icon="#{opt_prefix}/Live Translator.app/Contents/Resources/live-translator.icns" \\
         -Dapple.awt.application.name="Live Translator" \\
-        -jar "#{opt_libexec}/live-translator.jar" "\"
+        -jar "#{opt_libexec}/live-translator.jar" "$@"
     SCRIPT
     launcher.chmod 0755
   end
