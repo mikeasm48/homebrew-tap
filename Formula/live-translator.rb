@@ -1,17 +1,15 @@
 class LiveTranslator < Formula
   desc "Live speech translation (Uzbek/Russian/English) via Gemini"
   homepage "https://github.com/mikeasm48/live_translator"
-  url "https://github.com/mikeasm48/live_translator/releases/download/v0.4.0/live-translator-0.4.0.jar",
+  url "https://github.com/mikeasm48/live_translator/releases/download/v0.4.1/live-translator-0.4.1.jar",
       using: :nounzip
-  sha256 "3758856d859ce9daa243bf52072511628ebbc8371fd75d75343abba7d36308f5"
-  version "0.4.0"
-  # Исправлена обёртка: аргументы командной строки не доходили до приложения.
-  revision 1
+  sha256 "9f2ba0dab31ad264664b18e2dda0f93a7f45a19385a8da775e76a937f61ca36e"
+  version "0.4.1"
 
   depends_on "openjdk@21"
 
   def install
-    libexec.install "live-translator-0.4.0.jar" => "live-translator.jar"
+    libexec.install "live-translator-0.4.1.jar" => "live-translator.jar"
 
     # Обёртка вызывает Java из зависимости формулы, поэтому системная версия
     # Java ни на что не влияет и ставить её отдельно не нужно.
