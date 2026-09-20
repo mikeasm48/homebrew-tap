@@ -1,15 +1,15 @@
 class LiveTranslator < Formula
   desc "Live speech translation (Uzbek/Russian/English) via Gemini"
   homepage "https://github.com/mikeasm48/live_translator"
-  url "https://github.com/mikeasm48/live_translator/releases/download/v0.4.2/live-translator-0.4.2.jar",
+  url "https://github.com/mikeasm48/live_translator/releases/download/v0.4.3/live-translator-0.4.3.jar",
       using: :nounzip
-  sha256 "d286be1fb12b681bbd2273ab4422089fa7bdfbddcb67447d42637be0eb09c35e"
-  version "0.4.2"
+  sha256 "d2e3f8b8b1d48e913663170e946650b9b972848f7f60e9de78f7080a3dac2641"
+  version "0.4.3"
 
   depends_on "openjdk@21"
 
   def install
-    libexec.install "live-translator-0.4.2.jar" => "live-translator.jar"
+    libexec.install "live-translator-0.4.3.jar" => "live-translator.jar"
 
     # Обёртка вызывает Java из зависимости формулы, поэтому системная версия
     # Java ни на что не влияет и ставить её отдельно не нужно.
