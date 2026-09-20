@@ -1,15 +1,15 @@
 class LiveTranslator < Formula
-  desc "Live speech translation (Uzbek/Russian/English) via Yandex AI Studio"
+  desc "Live speech translation (Uzbek/Russian/English) via Gemini"
   homepage "https://github.com/mikeasm48/live_translator"
-  url "https://github.com/mikeasm48/live_translator/releases/download/v0.3.6/live-translator-0.3.6.jar",
+  url "https://github.com/mikeasm48/live_translator/releases/download/v0.4.0/live-translator-0.4.0.jar",
       using: :nounzip
-  sha256 "9f255f5fc899c79e726bb1c9c3d2524c8cecfe9ae7c24d0e767348a496fb6c8f"
-  version "0.3.6"
+  sha256 "3758856d859ce9daa243bf52072511628ebbc8371fd75d75343abba7d36308f5"
+  version "0.4.0"
 
   depends_on "openjdk@21"
 
   def install
-    libexec.install "live-translator-0.3.6.jar" => "live-translator.jar"
+    libexec.install "live-translator-0.4.0.jar" => "live-translator.jar"
 
     # Обёртка вызывает Java из зависимости формулы, поэтому системная версия
     # Java ни на что не влияет и ставить её отдельно не нужно.
@@ -76,8 +76,9 @@ class LiveTranslator < Formula
       Настройки и словарь терминов: ~/.config/live-translator/
       Расшифровки встреч и записи звука: ~/Documents/LiveTranslator/
 
-      При первом запуске приложение спросит каталог Yandex Cloud и API-ключ.
-      Ключ сохраняется в связке ключей macOS.
+      При первом запуске приложение спросит ключ Gemini — он берётся бесплатно
+      на https://aistudio.google.com/apikey и сохраняется в связке ключей macOS.
+      Поменять его потом можно в настройках: Cmd + , → «Доступ».
 
       Для звука из созвонов нужен BlackHole:
         brew install blackhole-2ch
